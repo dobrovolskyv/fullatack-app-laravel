@@ -14,7 +14,8 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::with('category')->paginate(10);
-        return ProductResource::collection($products);
+        ProductResource::collection($products);
+        return inertia('Product/Index', compact('products'));
     }
 
     public function show(Product $product)
