@@ -13,9 +13,12 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::with('category')->paginate(10);
-        ProductResource::collection($products);
-        return inertia('Product/Index', compact('products'));
+        $products = ProductResource::collection(Product::with('category')->paginate(10)
+        );
+
+        return inertia('Product/Index', [
+            'products' => $products,
+        ]);
     }
 
     public function show(Product $product)

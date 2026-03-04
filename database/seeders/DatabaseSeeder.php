@@ -30,5 +30,10 @@ class DatabaseSeeder extends Seeder
         );
 
         // CreatedUserEvent::dispatch($user);
+        $this->call([
+            ProductSeeder::class,
+            CategorySeeder::class
+
+        ]);
     }
 }
