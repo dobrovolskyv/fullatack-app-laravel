@@ -16,17 +16,51 @@
 
             </div>
         </div>
+        <div class="mt-4 flex flex-wrap gap-2">
+            <Link 
+            v-if="products.links?.prev"
+            :href="products.links.prev"
+            class="px-3 py-1 border rounded">
+            назад
+            </Link>
+            <span v-else class="px-3 py-1 border rounded opacity-50 cursor-not-allowed">назад2</span>
+
+            <div v-for="(link, i) in products.meta.links" :key="i">
+                <Link 
+                v-if="link.url"
+                :href="link.url"
+                class="px-3 py-1 border rounded"
+                :class="{ 'bg-gray-500 text-white': link.active }">
+                <span v-html="link.label"></span>
+                </Link>
+                <span
+                v-else
+                class="px-3 py-1 border rounded opacity-50 cursor-not-allowed"
+                v-html="link.label"
+                ></span>
+            </div>
+
+            <Link v-if="products.links?.next"
+            :href="products.links.next"
+            class="px-3 py-1 border rounded">
+            >
+              вперед
+            </Link>
+            <span v-else class="px-3 py-1 border rounded opacity-50 cursor-not-allowed">вперед2</span>
+        </div>
+
     </div>
 </template>
 
 <script setup>
 import AdminLayout from '@/Layouts/AdminLayout.vue';
+import { Link } from '@inertiajs/vue3'
 
 defineOptions({
     layout: AdminLayout
 })
 const props = defineProps({
-    products: { type: Array, default: () => [] }
+    products: { type: Object, required: true }
 })
 </script>
 
