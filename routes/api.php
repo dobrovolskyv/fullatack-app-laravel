@@ -13,8 +13,8 @@ Route::group(['middleware' => 'jwt.auth', 'prefix' => 'auth'], function () {
     Route::get('me', [AuthController::class, 'me']);
 });
 
-Route::apiResource('products', ProductController::class)
-    ->only(['index', 'show']); // только чтение, публично
+// Route::apiResource('products', ProductController::class)
+//     ->only(['index', 'show']); // только чтение, публично
 
 Route::middleware('jwt.auth')->group(function () {
     Route::apiResource('products', ProductController::class)

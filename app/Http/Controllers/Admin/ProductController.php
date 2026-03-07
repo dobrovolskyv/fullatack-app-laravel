@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Http\Resources\ProductResource;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -13,30 +14,18 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $product = ProductResource::collection(Product::with('category')->paginate(5));
-        return inertia('Product/Index', [
-            'products' => $product
+        $products = ProductResource::collection(Product::with('category')->paginate(7));
+        return inertia('Admin/Product/Index', [
+        'products' => $products
         ]);
     }
 
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Product $product)
-    {
-        $product= ProductResource::make($product->load('category'))->resolve();
-
-        return inertia('Product/Show', [
-            'product' => $product
-        ]);
-    }
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-
+        //
     }
 
     /**
@@ -47,14 +36,22 @@ class ProductController extends Controller
         //
     }
 
-
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
+    {
+        //
+    }
 
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
     {
-        //
+        return inertia('Admin/Product/Edit', [
+            'product' => Product::find($id)
+        ]);
     }
 
     /**
