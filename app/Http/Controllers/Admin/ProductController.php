@@ -77,8 +77,9 @@ class ProductController extends Controller
     {
 
         $product->delete();
-        return response()->json([
-            'message' => 'Product deleted successfully'
-        ],Response::HTTP_OK);
+        // return response()->json([
+        //     'message' => 'Product deleted successfully'
+        // ],Response::HTTP_OK);
+        return back()->with('success', 'Product deleted successfully');
     }
 }
