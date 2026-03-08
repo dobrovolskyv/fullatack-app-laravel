@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1 class="text-xl font-bold">EDIT PRODUCT</h1>
+        <h1 class="text-2xl font-bold">EDIT PRODUCT</h1>
         <div v-if="product">
 
             <p>Name: {{ product.name }}</p>
@@ -8,7 +8,8 @@
             <p>Price: {{ product.price }}</p>
 
         </div>
-        <Link :her="route('admin.product.index')" сlass="hover:text-blue-900 text-blue-400 mt-auto block">Назад в админку</Link>
+
+        <Link class="block hover:text-blue-900 text-blue-400 mt-[40px]" :href="route('admin.product.index')">Назад в админку</Link>
     </div>
 </template>
 
@@ -26,6 +27,4 @@ const props = defineProps({
 
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style></style>

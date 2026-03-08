@@ -4,9 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\Product\StoreRequest;
+use App\Http\Resources\CategoryResource;
 use App\Http\Resources\ProductResource;
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class ProductController extends Controller
 {
@@ -24,10 +27,11 @@ class ProductController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(StoreRequest $request)
+    public function create()
     {
 
-        return inertia('Admin/Product/Create');
+        $categories = CategoryResource::collection(Category::all())->resolve();
+        return inertia('Admin/Product/Create', compact('categories'));
     }
 
     /**
@@ -37,12 +41,7 @@ class ProductController extends Controller
     {
         $data = $request->validated();
         $product = Product::create($data);
-        $product = ProductResource::make($product)
-            ->response()
-            ->setStatusCode(201);
-        return inertia('Admin/Product/Create', [
-            'product' => $product
-        ]);
+        return back();
     }
 
     /**
@@ -74,8 +73,12 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Product $product)
     {
-        //
+
+        $product->delete();
+        return response()->json([
+            'message' => 'Product deleted successfully'
+        ],Response::HTTP_OK);
     }
 }
