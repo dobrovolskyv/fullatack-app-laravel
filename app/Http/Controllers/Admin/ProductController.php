@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\Product\StoreRequest;
 use App\Http\Resources\ProductResource;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -16,16 +17,23 @@ class ProductController extends Controller
     {
         $products = ProductResource::collection(Product::with('category')->paginate(7));
         return inertia('Admin/Product/Index', [
-        'products' => $products
+            'products' => $products
         ]);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(StoreRequest $request)
     {
-        //
+        $data = $request->validated();
+        $product = Product::create($data);
+        $product= ProductResource::make($product)
+            ->response()
+            ->setStatusCode(201);
+            return inertia('Admin/Product/Create', [
+                'product' => $product
+            ]);
     }
 
     /**

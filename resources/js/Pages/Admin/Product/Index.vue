@@ -1,15 +1,22 @@
 <template>
     <div>
-        <h1>PRODUCTS PAGE</h1>
-        <div class=" p-4">
-            <div class="p-2 flex items-center justify-between font-bold">
+        <h1 class="font-bold text-3xl">Управление товарами</h1>
+        <div class="">
+            <div class="py-2 flex items-center justify-between font-bold">
                 <p>Name</p>
 
             </div>
             <div v-for="product in products.data" :key="product.id"
-                class="font-bold p-2 flex items-center justify-between text-3xl uppercase text-cyan-900">
+                class="font-bold py-2 flex items-center justify-between text-3xl uppercase text-cyan-900">
                 {{ product.name }}
                 <div class="flex items-center gap-2">
+                    <Link :href="route('admin.product.store')">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="size-4 text-green-600">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                        </svg>
+
+                    </Link>
                     <Link :href="route('admin.product.edit', product.id)">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="size-4 text-green-600">
