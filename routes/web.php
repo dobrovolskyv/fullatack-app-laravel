@@ -19,7 +19,7 @@ use Inertia\Inertia;
 
 Route::get('/', [ProductController::class, 'index'])->name('home');
 Route::get('/products/{product}', [ProductController::class, 'show'])->name('product.show');
-Route::get('/admin/products', [AdminProductController::class, 'store'])->name('admin.product.store');
+
 
 
 

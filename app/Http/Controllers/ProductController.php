@@ -25,6 +25,8 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
+
+    $quer=
         $product= ProductResource::make($product->load('category'))->resolve();
 
         return inertia('Product/Show', [
@@ -33,7 +35,7 @@ class ProductController extends Controller
     }
     /**
      * Show the form for creating a new resource.
-     */
+     */  
     public function create()
     {
 

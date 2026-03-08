@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>ADMIN PRODUCT EDIT</h1>
+        <h1 class="text-xl font-bold">EDIT PRODUCT</h1>
         <div v-if="product">
 
             <p>Name: {{ product.name }}</p>
@@ -8,11 +8,17 @@
             <p>Price: {{ product.price }}</p>
 
         </div>
-
+        <Link :her="route('admin.product.index')" сlass="hover:text-blue-900 text-blue-400 mt-auto block">Назад в админку</Link>
     </div>
 </template>
 
 <script setup>
+import AdminLayout from '@/Layouts/AdminLayout.vue';
+import { Link } from '@inertiajs/vue3'
+
+defineOptions({
+    layout: AdminLayout
+})
 
 const props = defineProps({
     product: { type: Object, required: true }

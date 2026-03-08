@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>ADMIN PRODUCT STORE</h1>
+        <h1>CREATE STORE</h1>
         <div v-if="product">
 
             <p>Name: {{ product.name }}</p>

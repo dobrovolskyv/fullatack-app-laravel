@@ -26,22 +26,23 @@ class ProductController extends Controller
      */
     public function create(StoreRequest $request)
     {
-        $data = $request->validated();
-        $product = Product::create($data);
-        $product= ProductResource::make($product)
-            ->response()
-            ->setStatusCode(201);
-            return inertia('Admin/Product/Create', [
-                'product' => $product
-            ]);
+
+        return inertia('Admin/Product/Create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
-        //
+        $data = $request->validated();
+        $product = Product::create($data);
+        $product = ProductResource::make($product)
+            ->response()
+            ->setStatusCode(201);
+        return inertia('Admin/Product/Create', [
+            'product' => $product
+        ]);
     }
 
     /**

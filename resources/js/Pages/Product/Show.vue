@@ -13,7 +13,7 @@
         </div>
 
         <!-- Ссылка назад -->
-        <Link :href="route('home')" class="hover:text-blue-900 text-blue-400 mt-auto block ">
+        <Link :href="route('home')" class="hover:text-blue-900 text-blue-400 mt-auto block">
             ← Назад к списку продуктов
         </Link>
 
